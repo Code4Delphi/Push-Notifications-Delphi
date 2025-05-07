@@ -38,13 +38,15 @@ type
     TMSFNCWebPushDB1: TTMSFNCWebPushDB;
     TMSFNCWebPushServer1: TTMSFNCWebPushServer;
     btnStop: TBitBtn;
-    btnSendToAll: TBitBtn;
     ckAddIconURL: TCheckBox;
     edtIconURL: TEdit;
     GroupBox2: TGroupBox;
     ListBox1: TListBox;
     Panel2: TPanel;
     btnSendToSelectedUserId: TBitBtn;
+    btnSendToAll: TBitBtn;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
       APayload, AUserID, ABrowserID: string; var ADelete: Boolean);
@@ -58,11 +60,14 @@ type
     procedure TMSFNCWebPushServer1UnregisterSubscription(Sender: TObject; AData: TJSONObject; var AHandled: Boolean);
     procedure btnSendToAllClick(Sender: TObject);
     procedure btnSendToSelectedUserIdClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     procedure ConfScreen;
     function GetPortsText: string;
     function GetUrlToClick: string;
     function GetIconURL: string;
+    function GetUserIDSelected: string;
   public
 
   end;
@@ -160,6 +165,33 @@ begin
     Result := edtIconURL.Text;
 end;
 
+function TMainForm.GetUserIDSelected: string;
+begin
+  if ListBox1.ItemIndex < 0 then
+    raise Exception.Create('No items selected');
+
+  Result := ListBox1.Items[ListBox1.ItemIndex];
+end;
+
+procedure TMainForm.BitBtn1Click(Sender: TObject);
+begin
+  TMSFNCWebPushDB1.SetUserActiveState(Self.GetUserIDSelected, False);
+end;
+
+procedure TMainForm.BitBtn2Click(Sender: TObject);
+begin
+//  if TMSFNCWebPushDB1.DataSource.DataSet.IsEmpty then
+//    Exit;
+//
+//  ListBox1.Clear;
+//
+//  TMSFNCWebPushDB1.DataSource.DataSet.First;
+//  while not TMSFNCWebPushDB1.DataSource.DataSet.Eof do
+//  begin
+//    ListBox1.Items.Add(TMSFNCWebPushDB1.DataSource.DataSet.FieldByName('UserID').AsString);
+//  end;
+end;
+
 procedure TMainForm.btnSendToAllClick(Sender: TObject);
 begin
   TMSFNCWebPushSender1.SendNotificationAll(edtTitle.Text, mmBody.Lines.Text, Self.GetIconURL, Self.GetUrlToClick);
@@ -167,10 +199,7 @@ end;
 
 procedure TMainForm.btnSendToSelectedUserIdClick(Sender: TObject);
 begin
-  if ListBox1.ItemIndex < 0 then
-    raise Exception.Create('No items selected');
-
-  var LUserID := ListBox1.Items[ListBox1.ItemIndex];
+  var LUserID := Self.GetUserIDSelected;
   var LTitle := LUserID + ' - ' + edtTitle.Text;
   TMSFNCWebPushSender1.SendNotificationById(LUserID, LTitle, mmBody.Lines.Text, Self.GetIconURL, Self.GetUrlToClick);
 end;

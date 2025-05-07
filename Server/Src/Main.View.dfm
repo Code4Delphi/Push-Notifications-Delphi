@@ -221,23 +221,6 @@ object MainForm: TMainForm
       OnClick = btnStopClick
       ExplicitTop = 32
     end
-    object btnSendToAll: TBitBtn
-      AlignWithMargins = True
-      Left = 12
-      Top = 307
-      Width = 510
-      Height = 25
-      Margins.Left = 0
-      Margins.Top = 20
-      Margins.Right = 0
-      Margins.Bottom = 0
-      Align = alTop
-      Caption = 'Send to all'
-      TabOrder = 7
-      OnClick = btnSendToAllClick
-      ExplicitLeft = 14
-      ExplicitTop = 310
-    end
     object ckAddIconURL: TCheckBox
       AlignWithMargins = True
       Left = 12
@@ -253,7 +236,7 @@ object MainForm: TMainForm
       Caption = 'Add icon URL'
       Checked = True
       State = cbChecked
-      TabOrder = 8
+      TabOrder = 7
       ExplicitLeft = 14
       ExplicitTop = 257
     end
@@ -263,21 +246,27 @@ object MainForm: TMainForm
       Width = 510
       Height = 23
       Align = alTop
-      TabOrder = 9
+      TabOrder = 8
       Text = 'https://code4delphi.com.br/img/Code4D-150X150.png'
       ExplicitTop = 270
     end
     object GroupBox2: TGroupBox
+      AlignWithMargins = True
       Left = 12
-      Top = 360
+      Top = 294
       Width = 510
       Height = 136
-      Align = alBottom
+      Margins.Left = 0
+      Margins.Top = 7
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alTop
       Caption = ' UserID registered '
       Padding.Left = 2
       Padding.Right = 2
       Padding.Bottom = 2
-      TabOrder = 10
+      TabOrder = 9
+      ExplicitTop = 360
       object ListBox1: TListBox
         Left = 4
         Top = 17
@@ -307,14 +296,53 @@ object MainForm: TMainForm
         object btnSendToSelectedUserId: TBitBtn
           Left = 0
           Top = 2
-          Width = 161
+          Width = 105
           Height = 25
           Align = alLeft
-          Caption = 'Send to selected UserId'
+          Caption = 'Send to selected'
           TabOrder = 0
           OnClick = btnSendToSelectedUserIdClick
         end
+        object BitBtn1: TBitBtn
+          Left = 105
+          Top = 2
+          Width = 144
+          Height = 25
+          Align = alLeft
+          Caption = 'Disable send to selected'
+          TabOrder = 1
+          OnClick = BitBtn1Click
+        end
+        object BitBtn2: TBitBtn
+          Left = 249
+          Top = 2
+          Width = 144
+          Height = 25
+          Align = alLeft
+          Caption = 'Enable send to selected'
+          TabOrder = 2
+          OnClick = BitBtn2Click
+          ExplicitLeft = 353
+          ExplicitTop = 5
+        end
       end
+    end
+    object btnSendToAll: TBitBtn
+      AlignWithMargins = True
+      Left = 12
+      Top = 440
+      Width = 510
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 10
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alTop
+      Caption = 'Send to all'
+      TabOrder = 10
+      OnClick = btnSendToAllClick
+      ExplicitLeft = -12
+      ExplicitTop = 458
     end
   end
   object TMSFNCWebPushSender1: TTMSFNCWebPushSender
