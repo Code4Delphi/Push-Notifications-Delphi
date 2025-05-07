@@ -41,6 +41,10 @@ type
     btnSendToAll: TBitBtn;
     ckAddIconURL: TCheckBox;
     edtIconURL: TEdit;
+    GroupBox2: TGroupBox;
+    ListBox1: TListBox;
+    Panel2: TPanel;
+    btnSendToSelectedUserId: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
       APayload, AUserID, ABrowserID: string; var ADelete: Boolean);
@@ -53,6 +57,7 @@ type
     procedure TMSFNCWebPushServer1RegisterSubscription(Sender: TObject; AData: TJSONObject; var AHandled: Boolean);
     procedure TMSFNCWebPushServer1UnregisterSubscription(Sender: TObject; AData: TJSONObject; var AHandled: Boolean);
     procedure btnSendToAllClick(Sender: TObject);
+    procedure btnSendToSelectedUserIdClick(Sender: TObject);
   private
     procedure ConfScreen;
     function GetPortsText: string;
@@ -123,13 +128,17 @@ end;
 procedure TMainForm.TMSFNCWebPushServer1RegisterSubscription(Sender: TObject; AData: TJSONObject;
   var AHandled: Boolean);
 begin
-  mmLog.Lines.Add('Register Subscription: ' + AData.GetValue<string>('userID'));
+  var LUserID := AData.GetValue<string>('userID');
+  mmLog.Lines.Add('Register Subscription: ' + LUserID);
+  ListBox1.Items.Add(LUserID);
 end;
 
 procedure TMainForm.TMSFNCWebPushServer1UnregisterSubscription(Sender: TObject; AData: TJSONObject;
   var AHandled: Boolean);
 begin
-  mmLog.Lines.Add('Unregister Subscription: ' + AData.GetValue<string>('userID'));
+  var LUserID := AData.GetValue<string>('userID');
+  mmLog.Lines.Add('Unregister Subscription: ' + LUserID);
+  ListBox1.Items.Delete(ListBox1.Items.IndexOf(LUserID));
 end;
 
 function TMainForm.GetPortsText: string;
@@ -156,5 +165,14 @@ begin
   TMSFNCWebPushSender1.SendNotificationAll(edtTitle.Text, mmBody.Lines.Text, Self.GetIconURL, Self.GetUrlToClick);
 end;
 
+procedure TMainForm.btnSendToSelectedUserIdClick(Sender: TObject);
+begin
+  if ListBox1.ItemIndex < 0 then
+    raise Exception.Create('No items selected');
+
+  var LUserID := ListBox1.Items[ListBox1.ItemIndex];
+  var LTitle := LUserID + ' - ' + edtTitle.Text;
+  TMSFNCWebPushSender1.SendNotificationById(LUserID, LTitle, mmBody.Lines.Text, Self.GetIconURL, Self.GetUrlToClick);
+end;
 
 end.

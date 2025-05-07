@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'Push Notifications Delphi - Server'
-  ClientHeight = 644
+  ClientHeight = 661
   ClientWidth = 534
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 534
-    Height = 644
+    Height = 661
     Cursor = crHandPoint
     Align = alClient
     BevelOuter = bvNone
@@ -27,8 +27,7 @@ object MainForm: TMainForm
     Padding.Right = 12
     Padding.Bottom = 12
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = 8
+    ExplicitTop = -8
     object lbTitle: TLabel
       AlignWithMargins = True
       Left = 12
@@ -77,21 +76,18 @@ object MainForm: TMainForm
       Left = 12
       Top = 142
       Width = 510
-      Height = 60
+      Height = 51
       Align = alTop
       Lines.Strings = (
         'Push notification test created with Delphi using TMS FNC.'
         'Click to see more details')
       ScrollBars = ssVertical
       TabOrder = 2
-      ExplicitLeft = 5
-      ExplicitTop = 93
-      ExplicitWidth = 497
     end
     object ckAddUrlToClick: TCheckBox
       AlignWithMargins = True
       Left = 12
-      Top = 207
+      Top = 198
       Width = 510
       Height = 17
       Cursor = crHandPoint
@@ -110,7 +106,7 @@ object MainForm: TMainForm
     end
     object edtUrlToClick: TEdit
       Left = 12
-      Top = 226
+      Top = 217
       Width = 510
       Height = 23
       Align = alTop
@@ -163,18 +159,17 @@ object MainForm: TMainForm
     end
     object GroupBox1: TGroupBox
       Left = 12
-      Top = 391
+      Top = 496
       Width = 510
-      Height = 241
+      Height = 153
       Align = alBottom
       Caption = ' Log '
       TabOrder = 5
-      ExplicitTop = 360
       object mmLog: TMemo
         Left = 2
         Top = 17
         Width = 506
-        Height = 222
+        Height = 134
         Align = alClient
         BorderStyle = bsNone
         Color = clBtnFace
@@ -229,7 +224,7 @@ object MainForm: TMainForm
     object btnSendToAll: TBitBtn
       AlignWithMargins = True
       Left = 12
-      Top = 316
+      Top = 307
       Width = 510
       Height = 25
       Margins.Left = 0
@@ -240,12 +235,13 @@ object MainForm: TMainForm
       Caption = 'Send to all'
       TabOrder = 7
       OnClick = btnSendToAllClick
-      ExplicitTop = 319
+      ExplicitLeft = 14
+      ExplicitTop = 310
     end
     object ckAddIconURL: TCheckBox
       AlignWithMargins = True
       Left = 12
-      Top = 254
+      Top = 245
       Width = 510
       Height = 17
       Cursor = crHandPoint
@@ -263,13 +259,62 @@ object MainForm: TMainForm
     end
     object edtIconURL: TEdit
       Left = 12
-      Top = 273
+      Top = 264
       Width = 510
       Height = 23
       Align = alTop
       TabOrder = 9
       Text = 'https://code4delphi.com.br/img/Code4D-150X150.png'
       ExplicitTop = 270
+    end
+    object GroupBox2: TGroupBox
+      Left = 12
+      Top = 360
+      Width = 510
+      Height = 136
+      Align = alBottom
+      Caption = ' UserID registered '
+      Padding.Left = 2
+      Padding.Right = 2
+      Padding.Bottom = 2
+      TabOrder = 10
+      object ListBox1: TListBox
+        Left = 4
+        Top = 17
+        Width = 502
+        Height = 86
+        Align = alClient
+        Columns = 3
+        ItemHeight = 15
+        TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = 13
+        ExplicitWidth = 506
+        ExplicitHeight = 88
+      end
+      object Panel2: TPanel
+        Left = 4
+        Top = 103
+        Width = 502
+        Height = 29
+        Align = alBottom
+        BevelOuter = bvNone
+        Padding.Top = 2
+        Padding.Bottom = 2
+        TabOrder = 1
+        ExplicitLeft = 3
+        ExplicitTop = 102
+        object btnSendToSelectedUserId: TBitBtn
+          Left = 0
+          Top = 2
+          Width = 161
+          Height = 25
+          Align = alLeft
+          Caption = 'Send to selected UserId'
+          TabOrder = 0
+          OnClick = btnSendToSelectedUserIdClick
+        end
+      end
     end
   end
   object TMSFNCWebPushSender1: TTMSFNCWebPushSender
