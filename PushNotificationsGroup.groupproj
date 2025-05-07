@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{741820B1-2792-4089-9001-82F9EED6A43D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="WebClient\WebClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Server\Server.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="WebClient">
+        <MSBuild Projects="WebClient\WebClient.dproj"/>
+    </Target>
+    <Target Name="WebClient:Clean">
+        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WebClient:Make">
+        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Server">
+        <MSBuild Projects="Server\Server.dproj"/>
+    </Target>
+    <Target Name="Server:Clean">
+        <MSBuild Projects="Server\Server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Server:Make">
+        <MSBuild Projects="Server\Server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="WebClient;Server"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="WebClient:Clean;Server:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="WebClient:Make;Server:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

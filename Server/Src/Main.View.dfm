@@ -27,7 +27,6 @@ object MainForm: TMainForm
     Padding.Right = 12
     Padding.Bottom = 12
     TabOrder = 0
-    ExplicitTop = -8
     object lbTitle: TLabel
       AlignWithMargins = True
       Left = 12
@@ -68,9 +67,6 @@ object MainForm: TMainForm
       Align = alTop
       TabOrder = 1
       Text = 'Notification title with Delphi'
-      ExplicitLeft = 5
-      ExplicitTop = 36
-      ExplicitWidth = 497
     end
     object mmBody: TMemo
       Left = 12
@@ -100,9 +96,6 @@ object MainForm: TMainForm
       Checked = True
       State = cbChecked
       TabOrder = 3
-      ExplicitLeft = 64
-      ExplicitTop = 192
-      ExplicitWidth = 97
     end
     object edtUrlToClick: TEdit
       Left = 12
@@ -112,9 +105,6 @@ object MainForm: TMainForm
       Align = alTop
       TabOrder = 4
       Text = 'https://www.tmssoftware.com/site/tmsfncpushnotifications.asp'
-      ExplicitLeft = 5
-      ExplicitTop = 184
-      ExplicitWidth = 497
     end
     object btnStart: TBitBtn
       Left = 12
@@ -155,7 +145,6 @@ object MainForm: TMainForm
         1A1A1A1A1A1A1B1E191E1D1F020202020202020202020202020202020202}
       TabOrder = 0
       OnClick = btnStartClick
-      ExplicitTop = 4
     end
     object GroupBox1: TGroupBox
       Left = 12
@@ -175,9 +164,6 @@ object MainForm: TMainForm
         Color = clBtnFace
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 2
-        ExplicitHeight = 237
       end
     end
     object btnStop: TBitBtn
@@ -219,7 +205,6 @@ object MainForm: TMainForm
         1D222123050505050505050505050505050505050505}
       TabOrder = 6
       OnClick = btnStopClick
-      ExplicitTop = 32
     end
     object ckAddIconURL: TCheckBox
       AlignWithMargins = True
@@ -237,8 +222,6 @@ object MainForm: TMainForm
       Checked = True
       State = cbChecked
       TabOrder = 7
-      ExplicitLeft = 14
-      ExplicitTop = 257
     end
     object edtIconURL: TEdit
       Left = 12
@@ -248,7 +231,6 @@ object MainForm: TMainForm
       Align = alTop
       TabOrder = 8
       Text = 'https://code4delphi.com.br/img/Code4D-150X150.png'
-      ExplicitTop = 270
     end
     object GroupBox2: TGroupBox
       AlignWithMargins = True
@@ -266,7 +248,6 @@ object MainForm: TMainForm
       Padding.Right = 2
       Padding.Bottom = 2
       TabOrder = 9
-      ExplicitTop = 360
       object ListBox1: TListBox
         Left = 4
         Top = 17
@@ -276,10 +257,8 @@ object MainForm: TMainForm
         Columns = 3
         ItemHeight = 15
         TabOrder = 0
-        ExplicitLeft = 3
+        ExplicitLeft = 5
         ExplicitTop = 13
-        ExplicitWidth = 506
-        ExplicitHeight = 88
       end
       object Panel2: TPanel
         Left = 4
@@ -291,8 +270,6 @@ object MainForm: TMainForm
         Padding.Top = 2
         Padding.Bottom = 2
         TabOrder = 1
-        ExplicitLeft = 3
-        ExplicitTop = 102
         object btnSendToSelectedUserId: TBitBtn
           Left = 0
           Top = 2
@@ -322,8 +299,6 @@ object MainForm: TMainForm
           Caption = 'Enable send to selected'
           TabOrder = 2
           OnClick = BitBtn2Click
-          ExplicitLeft = 353
-          ExplicitTop = 5
         end
       end
     end
@@ -341,8 +316,6 @@ object MainForm: TMainForm
       Caption = 'Send to all'
       TabOrder = 10
       OnClick = btnSendToAllClick
-      ExplicitLeft = -12
-      ExplicitTop = 458
     end
   end
   object TMSFNCWebPushSender1: TTMSFNCWebPushSender

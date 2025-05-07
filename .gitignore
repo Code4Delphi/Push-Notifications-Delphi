@@ -81,3 +81,4 @@ __recovery/
 modules/
 Server/Win32/Debug/dataset.xml
 Server/Win32/Debug/push.ini
+/WebClient/TMSWeb
