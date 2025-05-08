@@ -14,8 +14,6 @@ type
     WebButton2: TWebButton;
     WebLabel1: TWebLabel;
     WebPushNotifications1: TWebPushNotifications;
-    WebLabel3: TWebLabel;
-    WebLabel4: TWebLabel;
     procedure WebButton1Click(Sender: TObject);
     procedure WebButton2Click(Sender: TObject);
     procedure WebEdit1Change(Sender: TObject);

@@ -39,8 +39,6 @@ object MainForm: TMainForm
       Margins.Bottom = 2
       Align = alTop
       Caption = 'Notification title'
-      ExplicitLeft = 5
-      ExplicitTop = 61
       ExplicitWidth = 86
     end
     object lbBody: TLabel
@@ -55,8 +53,6 @@ object MainForm: TMainForm
       Margins.Bottom = 2
       Align = alTop
       Caption = 'Notification body'
-      ExplicitLeft = 8
-      ExplicitTop = 87
       ExplicitWidth = 93
     end
     object edtTitle: TEdit
@@ -257,7 +253,7 @@ object MainForm: TMainForm
         Columns = 3
         ItemHeight = 15
         TabOrder = 0
-        ExplicitLeft = 5
+        ExplicitLeft = 3
         ExplicitTop = 13
       end
       object Panel2: TPanel
@@ -273,32 +269,35 @@ object MainForm: TMainForm
         object btnSendToSelectedUserId: TBitBtn
           Left = 0
           Top = 2
-          Width = 105
+          Width = 145
           Height = 25
           Align = alLeft
-          Caption = 'Send to selected'
+          Caption = 'Send to UserID selected'
           TabOrder = 0
           OnClick = btnSendToSelectedUserIdClick
         end
-        object BitBtn1: TBitBtn
-          Left = 105
+        object btnDeleteUserIDSelected: TBitBtn
+          Left = 145
           Top = 2
-          Width = 144
+          Width = 145
           Height = 25
           Align = alLeft
-          Caption = 'Disable send to selected'
+          Caption = 'Delete UserID selected'
           TabOrder = 1
-          OnClick = BitBtn1Click
+          OnClick = btnDeleteUserIDSelectedClick
+          ExplicitLeft = 139
+          ExplicitTop = 5
         end
         object BitBtn2: TBitBtn
-          Left = 249
+          Left = 290
           Top = 2
           Width = 144
           Height = 25
           Align = alLeft
           Caption = 'Enable send to selected'
           TabOrder = 2
-          OnClick = BitBtn2Click
+          ExplicitLeft = 296
+          ExplicitTop = 5
         end
       end
     end
