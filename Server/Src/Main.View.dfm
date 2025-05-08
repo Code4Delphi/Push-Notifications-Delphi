@@ -150,6 +150,17 @@ object MainForm: TMainForm
       Align = alBottom
       Caption = ' Log '
       TabOrder = 5
+      object lbClearLog: TLabel
+        Left = 464
+        Top = 0
+        Width = 33
+        Height = 15
+        Cursor = crHandPoint
+        Hint = 'Clear Log'
+        Caption = ' Clear '
+        Transparent = False
+        OnClick = lbClearLogClick
+      end
       object mmLog: TMemo
         Left = 2
         Top = 17
@@ -160,6 +171,8 @@ object MainForm: TMainForm
         Color = clBtnFace
         ScrollBars = ssVertical
         TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = 23
       end
     end
     object btnStop: TBitBtn

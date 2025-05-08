@@ -48,6 +48,7 @@ type
     btnSendToAll: TBitBtn;
     btnDeleteUserIDSelected: TBitBtn;
     BitBtn2: TBitBtn;
+    lbClearLog: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
       APayload, AUserID, ABrowserID: string; var ADelete: Boolean);
@@ -62,6 +63,7 @@ type
     procedure btnSendToAllClick(Sender: TObject);
     procedure btnSendToSelectedUserIdClick(Sender: TObject);
     procedure btnDeleteUserIDSelectedClick(Sender: TObject);
+    procedure lbClearLogClick(Sender: TObject);
   private
     procedure ConfScreen;
     function GetPortsText: string;
@@ -113,6 +115,11 @@ procedure TMainForm.ConfScreen;
 begin
   btnStart.Enabled := not TMSFNCWebPushServer1.Active;
   btnStop.Enabled := not btnStart.Enabled;
+end;
+
+procedure TMainForm.lbClearLogClick(Sender: TObject);
+begin
+  mmLog.Lines.Clear;
 end;
 
 procedure TMainForm.TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,

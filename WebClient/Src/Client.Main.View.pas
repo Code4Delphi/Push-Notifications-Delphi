@@ -24,8 +24,6 @@ type
     WebButton2: TWebButton;
     WebLabel1: TWebLabel;
     WebPushNotifications1: TWebPushNotifications;
-    WebLabel3: TWebLabel;
-    WebLabel4: TWebLabel;
     procedure WebButton1Click(Sender: TObject);
     procedure WebButton2Click(Sender: TObject);
     procedure WebEdit1Change(Sender: TObject);
@@ -53,9 +51,7 @@ procedure TClientMainView.WebFormCreate(Sender: TObject);
 begin
   LLocalStorage := TLocalStorage.Create(Self);
   if LLocalStorage.Count > 0 then
-  begin
     WebEdit1.Text := TLocalStorage.GetValue(STORAGE_KEY);
-  end;
 
   Self.SetButtonState;
 end;
