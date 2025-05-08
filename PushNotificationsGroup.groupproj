@@ -6,7 +6,7 @@
         <Projects Include="Server\Server.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="WebClient\WebClient.dproj">
+        <Projects Include="WebClient\WebPushClient.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +26,23 @@
     <Target Name="Server:Make">
         <MSBuild Projects="Server\Server.dproj" Targets="Make"/>
     </Target>
-    <Target Name="WebClient">
-        <MSBuild Projects="WebClient\WebClient.dproj"/>
+    <Target Name="WebPushClient">
+        <MSBuild Projects="WebClient\WebPushClient.dproj"/>
     </Target>
-    <Target Name="WebClient:Clean">
-        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Clean"/>
+    <Target Name="WebPushClient:Clean">
+        <MSBuild Projects="WebClient\WebPushClient.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="WebClient:Make">
-        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Make"/>
+    <Target Name="WebPushClient:Make">
+        <MSBuild Projects="WebClient\WebPushClient.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Server;WebClient"/>
+        <CallTarget Targets="Server;WebPushClient"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Server:Clean;WebClient:Clean"/>
+        <CallTarget Targets="Server:Clean;WebPushClient:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Server:Make;WebClient:Make"/>
+        <CallTarget Targets="Server:Make;WebPushClient:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

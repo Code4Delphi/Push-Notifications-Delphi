@@ -253,8 +253,6 @@ object MainForm: TMainForm
         Columns = 3
         ItemHeight = 15
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 13
       end
       object Panel2: TPanel
         Left = 4
@@ -285,8 +283,6 @@ object MainForm: TMainForm
           Caption = 'Delete UserID selected'
           TabOrder = 1
           OnClick = btnDeleteUserIDSelectedClick
-          ExplicitLeft = 139
-          ExplicitTop = 5
         end
         object BitBtn2: TBitBtn
           Left = 290
@@ -296,8 +292,6 @@ object MainForm: TMainForm
           Align = alLeft
           Caption = 'Enable send to selected'
           TabOrder = 2
-          ExplicitLeft = 296
-          ExplicitTop = 5
         end
       end
     end

@@ -1,17 +1,17 @@
-program WebClient;
+program WebPushClient;
 
 {$R *.dres}
 
 uses
   Vcl.Forms,
   WEBLib.Forms,
-  Main.View in 'Src\Main.View.pas' {MainView: TWebForm} {*.html};
+  Unit1 in 'Unit1.pas' {Form2: TWebForm} {*.html};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TMainView, MainView);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.

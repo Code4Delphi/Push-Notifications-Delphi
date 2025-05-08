@@ -82,6 +82,8 @@ implementation
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+  SetWindowPos(Handle, HWND_TOPMOST, Left, Top, Width, Height, SWP_NOACTIVATE or SWP_NOMOVE or SWP_NOSIZE);
+
   //AO NAO E OBRIGATORIO, MAS O FIREFOX E O SAFARI NAO ACEITARAO SE NAO ESTIVEREM PRESENTES
   TMSFNCWebPushSender1.Claims.Subject := 'mailto:admin@example.com';
 
