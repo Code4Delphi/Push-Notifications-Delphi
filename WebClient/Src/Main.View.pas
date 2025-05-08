@@ -9,18 +9,18 @@ uses
 
 type
   TMainView = class(TWebForm)
-    WebEdit1: TWebEdit;
-    WebButton1: TWebButton;
-    WebButton2: TWebButton;
+    edtUserID: TWebEdit;
+    btnSubscribe: TWebButton;
+    btnUnsubscribe: TWebButton;
     WebLabel1: TWebLabel;
     WebPushNotifications1: TWebPushNotifications;
-    procedure WebButton1Click(Sender: TObject);
-    procedure WebButton2Click(Sender: TObject);
-    procedure WebEdit1Change(Sender: TObject);
+    procedure btnSubscribeClick(Sender: TObject);
+    procedure btnUnsubscribeClick(Sender: TObject);
+    procedure edtUserIDChange(Sender: TObject);
     procedure WebFormCreate(Sender: TObject);
     procedure WebFormExit(Sender: TObject);
   private
-    ls: TLocalStorage;
+    LStorage: TLocalStorage;
     procedure DoAddToLocalStorage;
     procedure DoRemoveFromLocalStorage;
     procedure SetButtonState;
@@ -34,95 +34,96 @@ implementation
 
 {$R *.dfm}
 
+const
+  KEY_STORAGE = 'pushUserID';
+
+procedure TMainView.WebFormCreate(Sender: TObject);
+begin
+  LStorage := TLocalStorage.Create(Self);
+  if LStorage.Count > 0 then
+    edtUserID.Text := TLocalStorage.GetValue(KEY_STORAGE);
+
+  Self.SetButtonState;
+end;
+
+procedure TMainView.WebFormExit(Sender: TObject);
+begin
+  LStorage.Free;
+end;
+
 procedure TMainView.DoAddToLocalStorage;
 begin
-  TWebLocalStorage.SetValue('pushUserID', WebEdit1.Text);
-  SetButtonState;
+  TWebLocalStorage.SetValue(KEY_STORAGE, edtUserID.Text);
+  Self.SetButtonState;
 end;
 
 procedure TMainView.DoRemoveFromLocalStorage;
 begin
-  TWebLocalStorage.RemoveKey('pushUserID');
-  SetButtonState;
+  TWebLocalStorage.RemoveKey(KEY_STORAGE);
+  Self.SetButtonState;
 end;
 
 procedure TMainView.SetButtonState;
 begin
-  if WebEdit1.Text = '' then
+  if Trim(edtUserID.Text).IsEmpty then
   begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := False;
+    btnSubscribe.Enabled := False;
+    btnUnsubscribe.Enabled := False;
     Exit;
   end;
 
-  if TLocalStorage.GetValue('pushUserID') = WebEdit1.Text then
+  if TLocalStorage.GetValue(KEY_STORAGE) = edtUserID.Text then
   begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := True;
+    btnSubscribe.Enabled := False;
+    btnUnsubscribe.Enabled := True;
   end
-  else if TLocalStorage.GetValue('pushUserID') <> '' then
+  else if not TLocalStorage.GetValue(KEY_STORAGE).IsEmpty then
   begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := False;
+    btnSubscribe.Enabled := False;
+    btnUnsubscribe.Enabled := False;
   end
   else
   begin
-    WebButton1.Enabled := True;
-    WebButton2.Enabled := False;
+    btnSubscribe.Enabled := True;
+    btnUnsubscribe.Enabled := False;
   end;
 end;
 
 function TMainView.ValidUserID: Boolean;
 begin
   Result := True;
-  if WebEdit1.Text = '' then
+  if Trim(edtUserID.Text).IsEmpty then
   begin
     Result := False;
     ShowMessage('UserID cannot be empty!');
   end;
 end;
 
-procedure TMainView.WebButton1Click(Sender: TObject);
+procedure TMainView.btnSubscribeClick(Sender: TObject);
 begin
   if ValidUserID then
   begin
-    WebPushNotifications1.RegistrationUserID := WebEdit1.Text;
+    WebPushNotifications1.RegistrationUserID := edtUserID.Text;
     WebPushNotifications1.RegisterServiceWorker;
 
     DoAddToLocalStorage;
   end;
 end;
 
-procedure TMainView.WebButton2Click(Sender: TObject);
+procedure TMainView.btnUnsubscribeClick(Sender: TObject);
 begin
   if ValidUserID then
   begin
-    WebPushNotifications1.RegistrationUserID := WebEdit1.Text;
+    WebPushNotifications1.RegistrationUserID := edtUserID.Text;
     WebPushNotifications1.Unsubscribe;
 
     DoRemoveFromLocalStorage;
   end;
 end;
 
-procedure TMainView.WebEdit1Change(Sender: TObject);
+procedure TMainView.edtUserIDChange(Sender: TObject);
 begin
   SetButtonState;
-end;
-
-procedure TMainView.WebFormCreate(Sender: TObject);
-begin
-  ls := TLocalStorage.Create(Self);
-  if ls.Count > 0 then
-  begin
-    WebEdit1.Text := TLocalStorage.GetValue('pushUserID');
-  end;
-
-  SetButtonState;
-end;
-
-procedure TMainView.WebFormExit(Sender: TObject);
-begin
-  ls.Free;
 end;
 
 end.

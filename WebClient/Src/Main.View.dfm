@@ -20,7 +20,7 @@ object MainView: TMainView
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object WebEdit1: TWebEdit
+  object edtUserID: TWebEdit
     Left = 57
     Top = 8
     Width = 216
@@ -28,9 +28,9 @@ object MainView: TMainView
     ElementID = 'edtUserID'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
-    OnChange = WebEdit1Change
+    OnChange = edtUserIDChange
   end
-  object WebButton1: TWebButton
+  object btnSubscribe: TWebButton
     Left = 8
     Top = 33
     Width = 265
@@ -40,9 +40,9 @@ object MainView: TMainView
     ElementID = 'btnSubscribe'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
-    OnClick = WebButton1Click
+    OnClick = btnSubscribeClick
   end
-  object WebButton2: TWebButton
+  object btnUnsubscribe: TWebButton
     Left = 8
     Top = 64
     Width = 265
@@ -52,7 +52,7 @@ object MainView: TMainView
     ElementID = 'btnUnsubscribe'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
-    OnClick = WebButton2Click
+    OnClick = btnUnsubscribeClick
   end
   object WebPushNotifications1: TWebPushNotifications
     RegisterSubscriptionURL = 'http://localhost:8081/registerSubscription'
