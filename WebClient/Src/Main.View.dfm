@@ -1,90 +1,74 @@
 object MainView: TMainView
-  Width = 433
+  Width = 640
   Height = 480
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormContainer = 'appcontent'
+  ParentFont = False
   OnCreate = WebFormCreate
   OnExit = WebFormExit
-  object pnFormulario: TWebPanel
-    AlignWithMargins = True
-    Left = 5
-    Top = 5
-    Width = 423
-    Height = 177
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
-    ElementID = 'divFormulario'
-    Align = alTop
-    ChildOrder = 3
-    TabOrder = 0
-    object lbNome: TWebLabel
-      Left = 0
-      Top = 0
-      Width = 423
-      Height = 15
-      Align = alTop
-      Caption = 'UserID'
-      ElementID = 'edtUserID'
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      ExplicitWidth = 34
-    end
-    object edtUserID: TWebEdit
-      AlignWithMargins = True
-      Left = 0
-      Top = 15
-      Width = 423
-      Height = 22
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 0
-      Margins.Bottom = 5
-      Align = alTop
-      ChildOrder = 1
-      ElementID = 'edtUserID'
-      HeightPercent = 100.000000000000000000
-      TextHint = 'Enter Userid'
-      WidthPercent = 100.000000000000000000
-      OnChange = edtUserIDChange
-    end
-    object pnBotoes: TWebPanel
-      Left = 0
-      Top = 42
-      Width = 423
-      Height = 48
-      ElementID = 'divBotoes'
-      Align = alTop
-      BorderStyle = bsNone
-      ChildOrder = 5
-      TabOrder = 1
-      object btnSubscribe: TWebButton
-        Left = 0
-        Top = 0
-        Width = 210
-        Height = 48
-        Align = alLeft
-        Caption = 'Subscribe for push notifications'
-        ChildOrder = 1
-        ElementID = 'btnSubscribe'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = btnSubscribeClick
-        ExplicitTop = 3
-      end
-      object btnUnsubscribe: TWebButton
-        Left = 210
-        Top = 0
-        Width = 210
-        Height = 48
-        Align = alLeft
-        Caption = 'Unsubscribe from push notifications'
-        ChildOrder = 1
-        ElementID = 'btnUnsubscribe'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = btnUnsubscribeClick
-      end
-    end
+  object WebLabel1: TWebLabel
+    Left = 8
+    Top = 11
+    Width = 43
+    Height = 16
+    Caption = 'UserID:'
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+  end
+  object WebLabel3: TWebLabel
+    Left = 312
+    Top = 33
+    Width = 130
+    Height = 16
+    Caption = 'Push Notification demo'
+    ElementID = 'title'
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+  end
+  object WebLabel4: TWebLabel
+    Left = 312
+    Top = 65
+    Width = 184
+    Height = 16
+    Caption = 'Usage of TWebPushNotifications'
+    ElementID = 'description'
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+  end
+  object WebEdit1: TWebEdit
+    Left = 57
+    Top = 8
+    Width = 216
+    Height = 19
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+    OnChange = WebEdit1Change
+  end
+  object WebButton1: TWebButton
+    Left = 8
+    Top = 33
+    Width = 265
+    Height = 25
+    Caption = 'Subscribe for push notifications'
+    ChildOrder = 1
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+    OnClick = WebButton1Click
+  end
+  object WebButton2: TWebButton
+    Left = 8
+    Top = 64
+    Width = 265
+    Height = 25
+    Caption = 'Unsubscribe from push notifications'
+    ChildOrder = 2
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+    OnClick = WebButton2Click
   end
   object WebPushNotifications1: TWebPushNotifications
     RegisterSubscriptionURL = 'http://localhost:8081/registerSubscription'
