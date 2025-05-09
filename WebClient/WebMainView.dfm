@@ -1,7 +1,7 @@
 object MainView: TMainView
   Width = 322
   Height = 432
-  Caption = 'lbUserID'
+  Caption = 'Push Notifications Delphi - TMS FNC'
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13

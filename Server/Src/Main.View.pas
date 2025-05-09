@@ -47,7 +47,6 @@ type
     btnSendToSelectedUserId: TBitBtn;
     btnSendToAll: TBitBtn;
     btnDeleteUserIDSelected: TBitBtn;
-    BitBtn2: TBitBtn;
     lbClearLog: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
