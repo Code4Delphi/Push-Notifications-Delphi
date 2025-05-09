@@ -24,7 +24,7 @@ Caso as notificações não estejam aparecendo, verifique se o sistema operacion
 
 ## Material de apoio
 - [DLLs para server TMS FNC Web Push](https://code4delphi.com.br/downloads/TMS-FNC-Push-Notifications/DLLs-For-TMSFNCWebPush.rar)
-- [Conteúdo para adicionar ao final do arquivo serviceworker.js](https://code4delphi.com.br/downloads/Content-to-add-serviceworker-js.txt)
+- [Conteúdo para adicionar ao final do arquivo serviceworker.js](https://code4delphi.com.br/downloads/TMS-FNC-Push-Notifications/Content-to-add-serviceworker-js.txt)
 
 <br/>
 
