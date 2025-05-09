@@ -6,12 +6,13 @@ As Push Notifications são fundamentais para manter o usuário informado em temp
 
 
 ## 🔗 Links
-- Onde baixar:
-  - https://www.tmssoftware.com/site/tmsfncpushnotifications.asp
+- Onde baixar os recursos utilizados:
+  - [TMS FNC Push Notifications](https://www.tmssoftware.com/site/tmsfncpushnotifications.asp)
+  - [TMS WEB Core](https://www.tmssoftware.com/site/tmswebcore.asp)
 - Documentação oficial:
-  - https://www.tmssoftware.com/site/tmsfncpushnotifications.asp#product-help
-  - https://download.tmssoftware.com/doc/tmsfncpushnotifications/
-  - https://download.tmssoftware.com/doc/tmsfncpushnotifications/components/ttmsfncwebpushdb/
+  - [Menu de introdução com visão geral e instalação](https://download.tmssoftware.com/doc/tmsfncpushnotifications/gettingstarted/overview/)
+  - [Menu referência com documentação dos componentes](https://download.tmssoftware.com/doc/tmsfncpushnotifications/components/ttmsfncwebpushdb/)
+  - [Resources](https://www.tmssoftware.com/site/tmsfncpushnotifications.asp#product-help)
 
 ## ▶️ Vídeos de demonstração do projeto no Youtube
 - https://www.youtube.com/@code4delphi
