@@ -19,12 +19,13 @@ Caso as notificações não estejam aparecendo, verifique se o sistema operacion
 - [Validar se o Windows está bloqueando as Push Notifications](https://help.pushnews.eu/pt-BR/articles/5810154-validar-se-o-windows-esta-bloqueando-as-push-notifications)
 - [Validar se o Chrome está bloqueando as Push Notifications](https://help.pushnews.eu/pt-BR/articles/5810083-validar-se-o-chrome-esta-bloqueando-as-push-notifications)
 
-## ▶️ Vídeos de demonstração do projeto no Youtube
-- https://www.youtube.com/@code4delphi
 
-## Material de apoio
+## 📝 Material de apoio
 - [DLLs para server TMS FNC Web Push](https://code4delphi.com.br/downloads/TMS-FNC-Push-Notifications/DLLs-For-TMSFNCWebPush.rar)
 - [Conteúdo para adicionar ao final do arquivo serviceworker.js](https://code4delphi.com.br/downloads/TMS-FNC-Push-Notifications/Content-to-add-serviceworker-js.txt)
+
+## ▶️ Vídeos de demonstração do projeto no Youtube
+- https://www.youtube.com/@code4delphi
 
 <br/>
 
