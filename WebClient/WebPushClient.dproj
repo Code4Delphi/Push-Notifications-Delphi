@@ -112,8 +112,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Src\Client.Main.View.pas">
-            <Form>ClientMainView</Form>
+        <DCCReference Include="Unit1.pas">
+            <Form>Form2</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebForm</DesignClass>
         </DCCReference>

@@ -1,4 +1,4 @@
-object ClientMainView: TClientMainView
+object Form2: TForm2
   Width = 640
   Height = 480
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,26 @@ object ClientMainView: TClientMainView
     Width = 43
     Height = 16
     Caption = 'UserID:'
-    ElementID = 'lbUserID'
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+  end
+  object WebLabel3: TWebLabel
+    Left = 312
+    Top = 33
+    Width = 130
+    Height = 16
+    Caption = 'Push Notification demo'
+    ElementID = 'title'
+    HeightPercent = 100.000000000000000000
+    WidthPercent = 100.000000000000000000
+  end
+  object WebLabel4: TWebLabel
+    Left = 312
+    Top = 65
+    Width = 184
+    Height = 16
+    Caption = 'Usage of TWebPushNotifications'
+    ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
@@ -25,7 +44,6 @@ object ClientMainView: TClientMainView
     Top = 8
     Width = 216
     Height = 19
-    ElementID = 'edtUserID'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
     OnChange = WebEdit1Change
@@ -37,7 +55,6 @@ object ClientMainView: TClientMainView
     Height = 25
     Caption = 'Subscribe for push notifications'
     ChildOrder = 1
-    ElementID = 'btnSubscribe'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
     OnClick = WebButton1Click
@@ -49,7 +66,6 @@ object ClientMainView: TClientMainView
     Height = 25
     Caption = 'Unsubscribe from push notifications'
     ChildOrder = 2
-    ElementID = 'btnUnsubscribe'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
     OnClick = WebButton2Click
