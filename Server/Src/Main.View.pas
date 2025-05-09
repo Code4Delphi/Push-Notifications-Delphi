@@ -18,6 +18,7 @@ uses
   TMS.TMSFNCWebPushSender,
   TMS.TMSFNCWebPushServer,
   TMS.TMSFNCWebPushDB,
+  TMS.TMSFNCWebPushCommon,
   IdContext,
   IdCustomHTTPServer,
   System.JSON;
@@ -45,8 +46,8 @@ type
     Panel2: TPanel;
     btnSendToSelectedUserId: TBitBtn;
     btnSendToAll: TBitBtn;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnDeleteUserIDSelected: TBitBtn;
+    lbClearLog: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
       APayload, AUserID, ABrowserID: string; var ADelete: Boolean);
@@ -60,14 +61,15 @@ type
     procedure TMSFNCWebPushServer1UnregisterSubscription(Sender: TObject; AData: TJSONObject; var AHandled: Boolean);
     procedure btnSendToAllClick(Sender: TObject);
     procedure btnSendToSelectedUserIdClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnDeleteUserIDSelectedClick(Sender: TObject);
+    procedure lbClearLogClick(Sender: TObject);
   private
     procedure ConfScreen;
     function GetPortsText: string;
     function GetUrlToClick: string;
     function GetIconURL: string;
     function GetUserIDSelected: string;
+    procedure DeleteUserIdList(const AUserID: string);
   public
 
   end;
@@ -81,6 +83,8 @@ implementation
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+  SetWindowPos(Handle, HWND_TOPMOST, Left, Top, Width, Height, SWP_NOACTIVATE or SWP_NOMOVE or SWP_NOSIZE);
+
   //AO NAO E OBRIGATORIO, MAS O FIREFOX E O SAFARI NAO ACEITARAO SE NAO ESTIVEREM PRESENTES
   TMSFNCWebPushSender1.Claims.Subject := 'mailto:admin@example.com';
 
@@ -110,6 +114,11 @@ procedure TMainForm.ConfScreen;
 begin
   btnStart.Enabled := not TMSFNCWebPushServer1.Active;
   btnStop.Enabled := not btnStart.Enabled;
+end;
+
+procedure TMainForm.lbClearLogClick(Sender: TObject);
+begin
+  mmLog.Lines.Clear;
 end;
 
 procedure TMainForm.TMSFNCWebPushSender1NotificationError(Sender: TObject; AResponseCode: Integer; AResponse, AEndpoint,
@@ -143,7 +152,12 @@ procedure TMainForm.TMSFNCWebPushServer1UnregisterSubscription(Sender: TObject; 
 begin
   var LUserID := AData.GetValue<string>('userID');
   mmLog.Lines.Add('Unregister Subscription: ' + LUserID);
-  ListBox1.Items.Delete(ListBox1.Items.IndexOf(LUserID));
+  Self.DeleteUserIdList(LUserID);
+end;
+
+procedure TMainForm.DeleteUserIdList(const AUserID: string);
+begin
+  ListBox1.Items.Delete(ListBox1.Items.IndexOf(AUserID));
 end;
 
 function TMainForm.GetPortsText: string;
@@ -173,23 +187,16 @@ begin
   Result := ListBox1.Items[ListBox1.ItemIndex];
 end;
 
-procedure TMainForm.BitBtn1Click(Sender: TObject);
+procedure TMainForm.btnDeleteUserIDSelectedClick(Sender: TObject);
+var
+  LUserID: string;
+  LSubscription: TTMSFNCWebPushSubscription;
 begin
-  TMSFNCWebPushDB1.SetUserActiveState(Self.GetUserIDSelected, False);
-end;
+  LUserID := Self.GetUserIDSelected;
+  TMSFNCWebPushDB1.DeleteSubscription(LUserID);
 
-procedure TMainForm.BitBtn2Click(Sender: TObject);
-begin
-//  if TMSFNCWebPushDB1.DataSource.DataSet.IsEmpty then
-//    Exit;
-//
-//  ListBox1.Clear;
-//
-//  TMSFNCWebPushDB1.DataSource.DataSet.First;
-//  while not TMSFNCWebPushDB1.DataSource.DataSet.Eof do
-//  begin
-//    ListBox1.Items.Add(TMSFNCWebPushDB1.DataSource.DataSet.FieldByName('UserID').AsString);
-//  end;
+  if not TMSFNCWebPushDB1.TryFindSubscriptionByID(LUserID, LSubscription) then
+    Self.DeleteUserIdList(LUserID);
 end;
 
 procedure TMainForm.btnSendToAllClick(Sender: TObject);

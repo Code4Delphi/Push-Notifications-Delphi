@@ -3,10 +3,10 @@
         <ProjectGuid>{741820B1-2792-4089-9001-82F9EED6A43D}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="WebClient\WebClient.dproj">
+        <Projects Include="Server\Server.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Server\Server.dproj">
+        <Projects Include="WebClient\WebPushClient.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -17,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="WebClient">
-        <MSBuild Projects="WebClient\WebClient.dproj"/>
-    </Target>
-    <Target Name="WebClient:Clean">
-        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="WebClient:Make">
-        <MSBuild Projects="WebClient\WebClient.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Server">
         <MSBuild Projects="Server\Server.dproj"/>
     </Target>
@@ -35,14 +26,23 @@
     <Target Name="Server:Make">
         <MSBuild Projects="Server\Server.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WebPushClient">
+        <MSBuild Projects="WebClient\WebPushClient.dproj"/>
+    </Target>
+    <Target Name="WebPushClient:Clean">
+        <MSBuild Projects="WebClient\WebPushClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WebPushClient:Make">
+        <MSBuild Projects="WebClient\WebPushClient.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="WebClient;Server"/>
+        <CallTarget Targets="Server;WebPushClient"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="WebClient:Clean;Server:Clean"/>
+        <CallTarget Targets="Server:Clean;WebPushClient:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="WebClient:Make;Server:Make"/>
+        <CallTarget Targets="Server:Make;WebPushClient:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

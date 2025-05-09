@@ -1,8 +1,8 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'Push Notifications Delphi - Server'
-  ClientHeight = 661
+  Caption = 'Push Notifications Delphi - TMS FNC'
+  ClientHeight = 617
   ClientWidth = 534
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 534
-    Height = 661
+    Height = 617
     Cursor = crHandPoint
     Align = alClient
     BevelOuter = bvNone
@@ -27,6 +27,7 @@ object MainForm: TMainForm
     Padding.Right = 12
     Padding.Bottom = 12
     TabOrder = 0
+    ExplicitHeight = 661
     object lbTitle: TLabel
       AlignWithMargins = True
       Left = 12
@@ -39,8 +40,6 @@ object MainForm: TMainForm
       Margins.Bottom = 2
       Align = alTop
       Caption = 'Notification title'
-      ExplicitLeft = 5
-      ExplicitTop = 61
       ExplicitWidth = 86
     end
     object lbBody: TLabel
@@ -55,8 +54,6 @@ object MainForm: TMainForm
       Margins.Bottom = 2
       Align = alTop
       Caption = 'Notification body'
-      ExplicitLeft = 8
-      ExplicitTop = 87
       ExplicitWidth = 93
     end
     object edtTitle: TEdit
@@ -148,12 +145,24 @@ object MainForm: TMainForm
     end
     object GroupBox1: TGroupBox
       Left = 12
-      Top = 496
+      Top = 452
       Width = 510
       Height = 153
       Align = alBottom
       Caption = ' Log '
       TabOrder = 5
+      ExplicitTop = 496
+      object lbClearLog: TLabel
+        Left = 464
+        Top = 0
+        Width = 33
+        Height = 15
+        Cursor = crHandPoint
+        Hint = 'Clear Log'
+        Caption = ' Clear '
+        Transparent = False
+        OnClick = lbClearLogClick
+      end
       object mmLog: TMemo
         Left = 2
         Top = 17
@@ -237,7 +246,7 @@ object MainForm: TMainForm
       Left = 12
       Top = 294
       Width = 510
-      Height = 136
+      Height = 119
       Margins.Left = 0
       Margins.Top = 7
       Margins.Right = 0
@@ -252,17 +261,16 @@ object MainForm: TMainForm
         Left = 4
         Top = 17
         Width = 502
-        Height = 86
+        Height = 69
         Align = alClient
         Columns = 3
         ItemHeight = 15
         TabOrder = 0
-        ExplicitLeft = 5
-        ExplicitTop = 13
+        ExplicitHeight = 86
       end
       object Panel2: TPanel
         Left = 4
-        Top = 103
+        Top = 86
         Width = 502
         Height = 29
         Align = alBottom
@@ -270,42 +278,35 @@ object MainForm: TMainForm
         Padding.Top = 2
         Padding.Bottom = 2
         TabOrder = 1
+        ExplicitTop = 103
         object btnSendToSelectedUserId: TBitBtn
           Left = 0
           Top = 2
-          Width = 105
+          Width = 145
           Height = 25
           Align = alLeft
-          Caption = 'Send to selected'
+          Caption = 'Send to UserID selected'
           TabOrder = 0
           OnClick = btnSendToSelectedUserIdClick
         end
-        object BitBtn1: TBitBtn
-          Left = 105
+        object btnDeleteUserIDSelected: TBitBtn
+          Left = 145
           Top = 2
-          Width = 144
+          Width = 145
           Height = 25
           Align = alLeft
-          Caption = 'Disable send to selected'
+          Caption = 'Delete UserID selected'
           TabOrder = 1
-          OnClick = BitBtn1Click
-        end
-        object BitBtn2: TBitBtn
-          Left = 249
-          Top = 2
-          Width = 144
-          Height = 25
-          Align = alLeft
-          Caption = 'Enable send to selected'
-          TabOrder = 2
-          OnClick = BitBtn2Click
+          OnClick = btnDeleteUserIDSelectedClick
+          ExplicitLeft = 151
+          ExplicitTop = 5
         end
       end
     end
     object btnSendToAll: TBitBtn
       AlignWithMargins = True
       Left = 12
-      Top = 440
+      Top = 423
       Width = 510
       Height = 25
       Margins.Left = 0
@@ -316,6 +317,7 @@ object MainForm: TMainForm
       Caption = 'Send to all'
       TabOrder = 10
       OnClick = btnSendToAllClick
+      ExplicitTop = 440
     end
   end
   object TMSFNCWebPushSender1: TTMSFNCWebPushSender

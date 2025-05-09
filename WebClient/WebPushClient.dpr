@@ -1,11 +1,11 @@
-program WebClient;
+program WebPushClient;
 
 {$R *.dres}
 
 uses
   Vcl.Forms,
   WEBLib.Forms,
-  Main.View in 'Src\Main.View.pas' {MainView: TWebForm} {*.html};
+  WebMainView in 'WebMainView.pas' {MainView: TWebForm} {*.html};
 
 {$R *.res}
 
