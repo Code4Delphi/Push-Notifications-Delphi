@@ -14,6 +14,11 @@ As Push Notifications são fundamentais para manter o usuário informado em temp
   - [Menu referência com documentação dos componentes](https://download.tmssoftware.com/doc/tmsfncpushnotifications/components/ttmsfncwebpushdb/)
   - [Resources](https://www.tmssoftware.com/site/tmsfncpushnotifications.asp#product-help)
 
+## 🔒🚫 Push Notifications bloqueadas
+Caso as notificações não estejam aparecendo, verifique se o sistema operacional ou o navegadores não estão bloqueando as notificações
+- [Validar se o Windows está bloqueando as Push Notifications](https://help.pushnews.eu/pt-BR/articles/5810154-validar-se-o-windows-esta-bloqueando-as-push-notifications)
+- [Validar se o Chrome está bloqueando as Push Notifications](https://help.pushnews.eu/pt-BR/articles/5810083-validar-se-o-chrome-esta-bloqueando-as-push-notifications)
+
 ## ▶️ Vídeos de demonstração do projeto no Youtube
 - https://www.youtube.com/@code4delphi
 
