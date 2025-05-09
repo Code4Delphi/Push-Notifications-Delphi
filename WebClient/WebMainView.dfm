@@ -1,6 +1,6 @@
-object ClientMain: TClientMain
-  Width = 640
-  Height = 480
+object MainView: TMainView
+  Width = 322
+  Height = 432
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
@@ -16,26 +16,6 @@ object ClientMain: TClientMain
     Width = 43
     Height = 16
     Caption = 'UserID:'
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-  end
-  object WebLabel3: TWebLabel
-    Left = 312
-    Top = 33
-    Width = 130
-    Height = 16
-    Caption = 'Push Notification demo'
-    ElementID = 'title'
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-  end
-  object WebLabel4: TWebLabel
-    Left = 312
-    Top = 65
-    Width = 184
-    Height = 16
-    Caption = 'Usage of TWebPushNotifications'
-    ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end

@@ -1,4 +1,4 @@
-unit ClientMainView;
+unit WebMainView;
 
 interface
 
@@ -8,14 +8,12 @@ uses
   WEBLib.Storage, Vcl.StdCtrls, Vcl.Controls;
 
 type
-  TClientMain = class(TWebForm)
+  TMainView = class(TWebForm)
     WebEdit1: TWebEdit;
     WebButton1: TWebButton;
     WebButton2: TWebButton;
     WebLabel1: TWebLabel;
     WebPushNotifications1: TWebPushNotifications;
-    WebLabel3: TWebLabel;
-    WebLabel4: TWebLabel;
     procedure WebButton1Click(Sender: TObject);
     procedure WebButton2Click(Sender: TObject);
     procedure WebEdit1Change(Sender: TObject);
@@ -30,25 +28,25 @@ type
   end;
 
 var
-  ClientMain: TClientMain;
+  MainView: TMainView;
 
 implementation
 
 {$R *.dfm}
 
-procedure TClientMain.DoAddToLocalStorage;
+procedure TMainView.DoAddToLocalStorage;
 begin
   TWebLocalStorage.SetValue('pushUserID', WebEdit1.Text);
   SetButtonState;
 end;
 
-procedure TClientMain.DoRemoveFromLocalStorage;
+procedure TMainView.DoRemoveFromLocalStorage;
 begin
   TWebLocalStorage.RemoveKey('pushUserID');
   SetButtonState;
 end;
 
-procedure TClientMain.SetButtonState;
+procedure TMainView.SetButtonState;
 begin
   if WebEdit1.Text = '' then
   begin
@@ -74,7 +72,7 @@ begin
   end;
 end;
 
-function TClientMain.ValidUserID: Boolean;
+function TMainView.ValidUserID: Boolean;
 begin
   Result := True;
   if WebEdit1.Text = '' then
@@ -84,7 +82,7 @@ begin
   end;
 end;
 
-procedure TClientMain.WebButton1Click(Sender: TObject);
+procedure TMainView.WebButton1Click(Sender: TObject);
 begin
   if ValidUserID then
   begin
@@ -95,7 +93,7 @@ begin
   end;
 end;
 
-procedure TClientMain.WebButton2Click(Sender: TObject);
+procedure TMainView.WebButton2Click(Sender: TObject);
 begin
   if ValidUserID then
   begin
@@ -106,12 +104,12 @@ begin
   end;
 end;
 
-procedure TClientMain.WebEdit1Change(Sender: TObject);
+procedure TMainView.WebEdit1Change(Sender: TObject);
 begin
   SetButtonState;
 end;
 
-procedure TClientMain.WebFormCreate(Sender: TObject);
+procedure TMainView.WebFormCreate(Sender: TObject);
 begin
   ls := TLocalStorage.Create(Self);
   if ls.Count > 0 then
@@ -122,7 +120,7 @@ begin
   SetButtonState;
 end;
 
-procedure TClientMain.WebFormExit(Sender: TObject);
+procedure TMainView.WebFormExit(Sender: TObject);
 begin
   ls.Free;
 end;

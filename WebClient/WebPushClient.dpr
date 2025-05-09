@@ -5,13 +5,13 @@ program WebPushClient;
 uses
   Vcl.Forms,
   WEBLib.Forms,
-  Unit1 in 'Unit1.pas' {Form2: TWebForm} {*.html};
+  WebMainView in 'WebMainView.pas' {MainView: TWebForm} {*.html};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TMainView, MainView);
   Application.Run;
 end.
