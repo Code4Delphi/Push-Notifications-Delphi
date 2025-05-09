@@ -3,28 +3,37 @@ unit WebMainView;
 interface
 
 uses
-  System.SysUtils, System.Classes, JS, Web, WEBLib.Graphics, WEBLib.Controls,
-  WEBLib.StdCtrls, WEBLib.Forms, WEBLib.Dialogs, WEBLib.PushNotifications,
-  WEBLib.Storage, Vcl.StdCtrls, Vcl.Controls;
+  System.SysUtils,
+  System.Classes,
+  JS,
+  Web,
+  WEBLib.Graphics,
+  WEBLib.Controls,
+  WEBLib.StdCtrls,
+  WEBLib.Forms,
+  WEBLib.Dialogs,
+  WEBLib.PushNotifications,
+  WEBLib.Storage,
+  Vcl.StdCtrls,
+  Vcl.Controls;
 
 type
   TMainView = class(TWebForm)
-    WebEdit1: TWebEdit;
-    WebButton1: TWebButton;
-    WebButton2: TWebButton;
+    edtUserID: TWebEdit;
+    btnWebSubscribe: TWebButton;
+    btnWebUnsubscribe: TWebButton;
     WebLabel1: TWebLabel;
     WebPushNotifications1: TWebPushNotifications;
-    procedure WebButton1Click(Sender: TObject);
-    procedure WebButton2Click(Sender: TObject);
-    procedure WebEdit1Change(Sender: TObject);
+    procedure btnWebSubscribeClick(Sender: TObject);
+    procedure btnWebUnsubscribeClick(Sender: TObject);
+    procedure edtUserIDChange(Sender: TObject);
     procedure WebFormCreate(Sender: TObject);
     procedure WebFormExit(Sender: TObject);
   private
-    ls: TLocalStorage;
-    procedure DoAddToLocalStorage;
-    procedure DoRemoveFromLocalStorage;
+    LLocalStorage: TLocalStorage;
     procedure SetButtonState;
-    function ValidUserID: Boolean;
+    procedure ValidUserID;
+  public
   end;
 
 var
@@ -34,95 +43,80 @@ implementation
 
 {$R *.dfm}
 
-procedure TMainView.DoAddToLocalStorage;
-begin
-  TWebLocalStorage.SetValue('pushUserID', WebEdit1.Text);
-  SetButtonState;
-end;
-
-procedure TMainView.DoRemoveFromLocalStorage;
-begin
-  TWebLocalStorage.RemoveKey('pushUserID');
-  SetButtonState;
-end;
-
-procedure TMainView.SetButtonState;
-begin
-  if WebEdit1.Text = '' then
-  begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := False;
-    Exit;
-  end;
-
-  if TLocalStorage.GetValue('pushUserID') = WebEdit1.Text then
-  begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := True;
-  end
-  else if TLocalStorage.GetValue('pushUserID') <> '' then
-  begin
-    WebButton1.Enabled := False;
-    WebButton2.Enabled := False;
-  end
-  else
-  begin
-    WebButton1.Enabled := True;
-    WebButton2.Enabled := False;
-  end;
-end;
-
-function TMainView.ValidUserID: Boolean;
-begin
-  Result := True;
-  if WebEdit1.Text = '' then
-  begin
-    Result := False;
-    ShowMessage('UserID cannot be empty!');
-  end;
-end;
-
-procedure TMainView.WebButton1Click(Sender: TObject);
-begin
-  if ValidUserID then
-  begin
-    WebPushNotifications1.RegistrationUserID := WebEdit1.Text;
-    WebPushNotifications1.RegisterServiceWorker;
-
-    DoAddToLocalStorage;
-  end;
-end;
-
-procedure TMainView.WebButton2Click(Sender: TObject);
-begin
-  if ValidUserID then
-  begin
-    WebPushNotifications1.RegistrationUserID := WebEdit1.Text;
-    WebPushNotifications1.Unsubscribe;
-
-    DoRemoveFromLocalStorage;
-  end;
-end;
-
-procedure TMainView.WebEdit1Change(Sender: TObject);
-begin
-  SetButtonState;
-end;
+const
+  STORAGE_KEY = 'pushUserID';
 
 procedure TMainView.WebFormCreate(Sender: TObject);
 begin
-  ls := TLocalStorage.Create(Self);
-  if ls.Count > 0 then
-  begin
-    WebEdit1.Text := TLocalStorage.GetValue('pushUserID');
-  end;
+  LLocalStorage := TLocalStorage.Create(Self);
+  if LLocalStorage.Count > 0 then
+    edtUserID.Text := TLocalStorage.GetValue(STORAGE_KEY);
 
-  SetButtonState;
+  Self.SetButtonState;
 end;
 
 procedure TMainView.WebFormExit(Sender: TObject);
 begin
-  ls.Free;
+  LLocalStorage.Free;
+end;
+
+procedure TMainView.edtUserIDChange(Sender: TObject);
+begin
+  Self.SetButtonState;
+end;
+
+procedure TMainView.SetButtonState;
+begin
+  if edtUserID.Text = '' then
+  begin
+    btnWebSubscribe.Enabled := False;
+    btnWebUnsubscribe.Enabled := False;
+    Exit;
+  end;
+
+  if TLocalStorage.GetValue(STORAGE_KEY) = edtUserID.Text then
+  begin
+    btnWebSubscribe.Enabled := False;
+    btnWebUnsubscribe.Enabled := True;
+  end
+  else if not Trim(TLocalStorage.GetValue(STORAGE_KEY)).IsEmpty then
+  begin
+    btnWebSubscribe.Enabled := False;
+    btnWebUnsubscribe.Enabled := False;
+  end
+  else
+  begin
+    btnWebSubscribe.Enabled := True;
+    btnWebUnsubscribe.Enabled := False;
+  end;
+end;
+
+procedure TMainView.ValidUserID;
+begin
+  if Trim(edtUserID.Text).IsEmpty then
+    raise Exception.Create('UserID cannot be empty!');
+end;
+
+procedure TMainView.btnWebSubscribeClick(Sender: TObject);
+begin
+  Self.ValidUserID;
+
+  WebPushNotifications1.RegistrationUserID := edtUserID.Text;
+  WebPushNotifications1.RegisterServiceWorker;
+
+  TWebLocalStorage.SetValue(STORAGE_KEY, edtUserID.Text);
+  Self.SetButtonState;
+end;
+
+procedure TMainView.btnWebUnsubscribeClick(Sender: TObject);
+begin
+  Self.ValidUserID;
+
+  WebPushNotifications1.RegistrationUserID := edtUserID.Text;
+  WebPushNotifications1.Unsubscribe;
+
+  TWebLocalStorage.RemoveKey(STORAGE_KEY);
+  Self.SetButtonState;
 end;
 
 end.
