@@ -25,7 +25,8 @@ Caso as notificações não estejam aparecendo, verifique se o sistema operacion
 - [Conteúdo para adicionar ao final do arquivo serviceworker.js](https://code4delphi.com.br/downloads/TMS-FNC-Push-Notifications/Content-to-add-serviceworker-js.txt)
 
 ## ▶️ Vídeos de demonstração do projeto no Youtube
-- https://www.youtube.com/@code4delphi
+- [Utilitários Delphi #10: Push Notifications (parte 1)](https://www.youtube.com/watch?v=g5dL1JwrHiw&list=PLLHSz4dOnnN2Xlf7OX47cF20gbmz9-9z0)
+- [Utilitários Delphi #11: Push Notifications na Prática (parte 2)](https://www.youtube.com/watch?v=BoSJb541ueI&list=PLLHSz4dOnnN2Xlf7OX47cF20gbmz9-9z0)
 
 <br/>
 
